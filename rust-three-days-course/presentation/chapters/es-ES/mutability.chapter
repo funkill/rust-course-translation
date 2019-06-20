@@ -1,0 +1,30 @@
+# Mutabilidad
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+Los lenguajes de programación modernos difieren en su actitud hacia la mutabilidad de datos.
+
+¿Dónde se planta Rust?
+
+---
+
+## Un ejemplo
+
+<pre><code data-source="chapters/shared/code/mutability/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Correct
+
+<pre><code data-source="chapters/shared/code/mutability/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+En Rust la mutabilidad de datos debe ser declarada.
+
+La mutabilidad siempre es aparente leyendo el código.
+
+---
+
+La mutabilidad es fundamental para Rust y es una consideración común.

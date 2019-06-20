@@ -1,0 +1,46 @@
+# Deref-Conversions
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+## Motivation
+
+Warum funktioniert eigentlich folgendes?
+
+<pre><code data-source="chapters/shared/code/deref-coersions/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Box hat doch gar kein Feld "x"!
+
+---
+
+## Auto-Dereferenzierungen
+
+Rust dereferenziert unter bestimmten Umständen automatisch. Wie alles andere, muss das explizit angefordert werden über:
+
+-   einen Aufruf oder Feldzugriff via den `.`-Operator
+-   eine explizite Dereferenzierung mit `*`
+-   bei der Übergabe mit `&`
+-   führt manchmal zu einem hässlichen `&*`-Pattern
+
+---
+
+Dies macht vor allem Wrapper-Typen sehr ergonomisch!
+
+---
+
+Dahinter stecken die `Deref` und `DerefMut`-Traits.
+
+<pre><code data-source="chapters/shared/code/deref-coersions/2.rs" data-trim="hljs rust"></code></pre>
+Dieser Aufruf wird eingefügt, wenn Dereferenzierungen angefordert werden.
+
+---
+
+## Wichtige Auto-Dereferenzierungen
+
+-   String -&gt; &str
+-   Vec<T> -&gt; &\[T\]
+
+Funktionen, die immutabel auf Strings oder Vektoren arbeiten, sollten eine immutable Slice als Argument verwenden. Das Layout der Typen ist so gewählt, dass das *kostenfrei* ist.
+
+---
+
+<pre><code data-source="chapters/shared/code/deref-coersions/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>

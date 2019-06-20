@@ -1,0 +1,48 @@
+# Funciones
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+## Declaración
+
+<pre><code data-source="chapters/shared/code/functions/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Argumentos
+
+<pre><code data-source="chapters/shared/code/functions/2.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Retornos
+
+Valores de retorno son opcionales.
+
+<pre><code data-source="chapters/shared/code/functions/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Funciones genéricas
+
+Las funciones genéricas tienen parámetros de tipos.
+
+<pre><code data-source="chapters/shared/code/functions/4.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Con limites
+
+Las funciones genéricas pueden tener límites.
+
+Estos son equivalentes:
+
+<pre><code data-source="chapters/shared/code/functions/5.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+# Observaciones
+
+-   Los tipos que no tienen el trait `Copy` son consumidos cuando se pasan por valor.
+-   Devolver referencias puede involucrar clarificar `lifetimes` (discutidos más adelante).
+

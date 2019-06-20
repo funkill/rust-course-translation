@@ -1,0 +1,85 @@
+# Iteratoren
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Rusts Iteratoren sind:
+
+-   Lazy
+-   Überall
+-   Potentiell unendlich
+
+---
+
+## Woher kommen sie?
+
+-   Kollektionen wie `Vec<T>` haben eine `iter()`-Funktion, die einen Iterator erzeugt.
+-   Dinge wie `std::net::TcpListener` bieten einen Iterator über `TcpStream`s mit `incoming()` an.
+-   Iteratoren können auch auf andere Strukturen implementiert werden.
+
+---
+
+## Allgemeine Verwendung
+
+---
+
+## `next()`
+
+Iteratoren können manuell verwendet werden:
+
+<pre><code data-source="chapters/shared/code/iterators/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `map()`
+
+Elemente können während der Auswertung transformiert werden:
+
+<pre><code data-source="chapters/shared/code/iterators/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `filter()`
+
+Werte können ausgefiltert und ihre weitere Berechnung übersprungen werden:
+
+<pre><code data-source="chapters/shared/code/iterators/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `fold()`
+
+Reduzieren einer Folge auf einen einzelnen Wert:
+
+<pre><code data-source="chapters/shared/code/iterators/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `cycle()` & `take()`
+
+Iteratoren wiederholen und früh beenden:
+
+<pre><code data-source="chapters/shared/code/iterators/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `zip()` & `unzip()`
+
+Iteratoren zusammenfügen und wieder trennen:
+
+<pre><code data-source="chapters/shared/code/iterators/6.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `max()` & `min()`
+
+<pre><code data-source="chapters/shared/code/iterators/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Gotcha
+
+Das geht nicht:
+
+<pre><code data-source="chapters/shared/code/iterators/8.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Warum? (Denken Sie über scoping & Besitz nach!)

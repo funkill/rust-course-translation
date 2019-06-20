@@ -1,0 +1,111 @@
+# Installation von Rust
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+## Ziele
+
+-  Installation von Rust mit rustup
+-  Kennenlernen der Komponenten der Toolchain
+-  Hallo Welt!
+
+---
+
+## rustup
+
+Rustup ist das Standard-Tool zum Managen von Rusts Compiler-Toolchain.
+
+http://rustup.rs/
+
+Führen Sie das Shell-Script im Terminal aus.
+
+---
+
+## Wichtige Kommandos in rustup
+
+<pre><code data-source="chapters/shared/code/installation/1.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+# Erste Schritte
+
+Führen Sie folgende Kommandos aus:
+
+<pre><code data-source="chapters/shared/code/installation/2.sh" data-trim="hljs sh"></code></pre>
+Dies lädt die Quelltexte der Standardbibliothek und die Dokumentation zur Komplettierung und Offlineverwendung herunter.
+
+---
+
+## Inhalt einer Toolchain
+
+-   rustc
+-   cargo
+-   rustdoc
+-   rust-(lldb|gdb)
+-   libcore/libstd
+
+Die genaue Art des Debuggers ist plattformabhängig.
+
+---
+
+## rustc
+
+<pre><code data-source="chapters/shared/code/installation/3.sh" data-trim="hljs sh"></code></pre>
+Der Rust-Compiler übernimmt das kompilieren und linken von Rust-Code.
+
+
+`rustc` ist annähernd komplett in Rust geschrieben.
+
+---
+
+## Hallo, Welt!
+Erstellen Sie die Datei hello_world.rs mit folgendem Code:
+
+<pre><code data-source="chapters/shared/code/installation/4.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+Führen Sie die Datei aus.
+
+<pre><code data-source="chapters/shared/code/installation/5a.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+Was Sie sehen sollten:
+
+<pre><code data-source="chapters/shared/code/installation/5b.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+## Cargo
+
+<pre><code data-source="chapters/shared/code/installation/6.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+Cargo ist Rusts Build- und Codeverwaltungs-Toolchain.
+
+Cargo wird mit `rustc` ausgeliefert, ist aber nicht fest an eine `rustc`-Version gebunden.
+
+---
+
+## Ausführung mit Cargo
+
+<pre><code data-source="chapters/shared/code/installation/7.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+## Im Verzeichnis umschauen
+
+-   Was steht in Cargo.toml?
+-   Was steht in Cargo.lock?
+
+---
+
+## Cargo verwaltet auch Tools
+
+<pre><code data-source="chapters/shared/code/installation/8.sh" data-trim="hljs sh"></code></pre>
+
+
+
+---

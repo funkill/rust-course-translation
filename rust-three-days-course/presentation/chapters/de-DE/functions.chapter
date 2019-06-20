@@ -1,0 +1,24 @@
+# Funktionen
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+## Deklaration
+
+<pre><code data-source="chapters/shared/code/functions/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Rückgabewert
+
+Der Rückgabewert ist optional.
+
+<pre><code data-source="chapters/shared/code/functions/2.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+Signaturen müssen immer vollständig sein!
+
+---
+
+Funktionen sind auch Werte (in Form eines Funktionspointers), dazu später mehr.

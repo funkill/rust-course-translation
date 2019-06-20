@@ -1,0 +1,132 @@
+# Standardtypen
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Es gibt mehrere Pervasive Typen in Rust.
+
+Diese Typen sind nicht einzigartig oder speziell, sie verwenden nur den verfügbaren Typ ssytem.
+
+---
+
+## Überblick
+
+-   `Option<T>` - Entfernt die Notwendigkeit einer `null` primitiv.
+-   `Result<T,E>` - Entfernt die Notwendigkeit für Ausnahmen.
+-   `Vec<T>` - Wachsende Arrays.
+-   `HashMap<K,V>` - Schlüsselwertspeicher.
+
+---
+
+## `Option<T>`
+
+<pre><code data-source="chapters/shared/code/standard-types/1.rs" data-trim="hljs rust"></code></pre>
+Options sind Wrapper-Typen, und müssen ausgepackt werden, um verwendet werden.
+
+---
+
+## `Option<T>`
+
+Jede Funktion, die nicht immer einen Wert zurückgibt, gibt eine `Option<T>` zurück.
+
+<pre><code data-source="chapters/shared/code/standard-types/2.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `Option<T>`: Nutzen
+
+Der Programmierer *immer* weiß, wo ein `None` erscheinen kann und kann entscheiden, wie die Situation behandelt werden soll.
+
+Dieses Merkmal hilft *entfernen Sie das Geheimnis* aus dem Coding-Prozess, und hilft im Vertrauen.
+
+---
+
+## `Option<T>`: Unwrapping
+
+`unwrap()` wird die Anwendung in Panik bringen, wenn der Wert `None` ist.
+
+Dies wird nur bei Tests und Prototypen empfohlen.
+
+<pre><code data-source="chapters/shared/code/standard-types/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `Option<T>`: Sicherheit
+
+`match` ist eine von mehreren Möglichkeiten zur Sicherheit Arbeit mit `option`s.
+
+<pre><code data-source="chapters/shared/code/standard-types/4.rs" data-trim="hljs rust"></code></pre>
+Egal, was der Wert von `maybe_a_value`, wird das Programm niemals abstürzen.
+
+---
+
+## `Option<T>`: Fragen
+
+Entfernt diese Art vollständig die Notwendigkeit für ein `null`-Primitiv?
+
+Was sind die Vorteile?
+
+---
+
+## `Result<T,E>`
+
+<pre><code data-source="chapters/shared/code/standard-types/5.rs" data-trim="hljs rust"></code></pre>
+Results sind Wrappertypen, die entweder den erfolgreichen Wert oder den Fehlerwert enthalten.
+
+---
+
+## `Result<T,E>`: Verwendung
+
+Ergebnisse können über `unwrap()` ebenso wie `Option`-Typen abgewickelt werden und können auf die gleiche Weise behandelt werden.
+
+<pre><code data-source="chapters/shared/code/standard-types/6.rs" data-trim="hljs rust"></code></pre>
+Die Behandlung komplexer Fehlerszenarien wird in einem späteren Kapitel behandelt.
+
+---
+
+## `Result<T,E>`: Fragen
+
+Entfernt dieser Typ vollständig die Notwendigkeit von Ausnahmen?
+
+Was sind die Vorteile?
+
+---
+
+## `Vec<T>`
+
+Besessene, veränderliche, anregbare Arrays. Auf dem Haufen.
+
+<pre><code data-source="chapters/shared/code/standard-types/7.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `Vec<T>`: Allokation
+
+Zuweisen mit `Vec :: new ()` oder dem `vec! []` Makro.
+
+<pre><code data-source="chapters/shared/code/standard-types/8.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `Vec<T>`: Als Scheibe
+
+`Vec<T>` implementiert `Deref<Target=[T]>`, so kann es leicht als eine Scheibe verwendet werden.
+
+<pre><code data-source="chapters/shared/code/standard-types/9.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `HashMap<K,V>`
+
+HashMaps sind Schlüsselwertspeicher. Schlüssel müssen `Hash` implementieren.
+
+<pre><code data-source="chapters/shared/code/standard-types/10.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `HashMap<K,V>`: `entry()`
+
+Manipulieren ein Schlüssel entsprechender Eintrag vorhanden.
+
+<pre><code data-source="chapters/shared/code/standard-types/11.rs" data-trim="hljs rust"></code></pre>
+

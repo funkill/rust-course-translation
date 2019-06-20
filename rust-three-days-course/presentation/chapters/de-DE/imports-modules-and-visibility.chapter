@@ -1,0 +1,136 @@
+# Imports, Module und Sichtbarkeit
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+## Imports
+
+Alle zu verwendenden Objekte sind zu deklarieren. Dies ist ähnlich wie bei Java und Haskell.
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Modul-Imports
+
+Man kann auch das Modul importieren und dann qualifiziert verwenden:
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Glob-Imports
+
+Genauso kann ein Modul komplett importiert werden:
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Das ist jedoch *generell* ungern gesehen.
+
+---
+
+## Prelude
+
+Eine Ausnahme stellt die sogenannte "Prelude" dar: Dies ist ein spezielles Modul in der Standardbibliothek, das automatisch komplett importiert wird.
+
+---
+
+## Andere Preludes
+
+Auch bieten einige Bibliotheken `prelude`-Module an, so zum Beispiel `std::io`.
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Hier ist der Glob gerne gesehen.
+
+---
+
+## Umbenennen beim Import
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/5.rs" data-trim="hljs rust" class="lang-rust" class="lang-rust"></code></pre>
+
+---
+
+## Lokaler import
+
+Imports können auch direkt in Funktionen geschehen. Sie sind dann nur dort gültig.
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/6.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Module
+
+Das Modulsystem von Rust ist dem von Python ähnlich.
+
+---
+
+-   Jede Quelldatei ist automatisch ein Modul.
+-   Submodule können entweder in derselben Datei oder in einer anderen sein.
+-   Bibliotheken nennen sich "Crates" und enthalten Module.
+
+---
+
+Per Konvention ist das Hauptmodul einer Bibliothek in einer Datei `src/lib.rs`, das Hauptmodul einer einzelnen Applikation in `src/main.rs` und das Hauptmodul mehrerer Applikationen in `src/bin/*rs`.
+
+---
+
+Eine beispielhafte Applikation:
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Das Modul in eine eigene Datei verschieben
+
+Genauso könnte unsere Applikation aber auch folgendes Layout haben:
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/8.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Ein großes Modul als eigenes Verzeichnis
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/9.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+In beiden Fällen muss das Modul im darüber liegenden Modul bekannt gemacht werden:
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/10.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+Bei letzterem Ansatz können dann wieder Module relativ zu `mod.rs` angelegt werden.
+
+---
+
+## Sichtbarkeit
+
+In Rust ist alles standardmässig privat. Öffentlich verfügbare Typen werden mit `pub` markiert.
+
+Öffentliche Typen und Funktionen in einem öffentlich erreichbaren Modul-Pfad werden exportiert.
+
+---
+
+## Beispiel
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/11.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Structs
+
+Structs sind an dieser Stelle etwas komplexer: Sie exportieren ihre Felder nicht, was deren Verwendung und die Konstruktion des Strucs nicht ermöglicht.
+
+Genauso werden Struct-Funktionen nicht standardmässig exportiert.
+
+---
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/12.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+<pre><code data-source="chapters/shared/code/imports-modules-and-visibility/13.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+Generell ist aus 2 Gründen vom exportieren von Feldern abzuraten: \* Eine Stukturveränderung ist ein automatischer Bruch des externen Interfaces \* Der Compiler optimiert Accessor-Funktionen normalerweise auf Feldzugriff hinunter.

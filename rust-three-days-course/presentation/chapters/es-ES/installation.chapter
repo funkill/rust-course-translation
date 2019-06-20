@@ -1,0 +1,92 @@
+# Las herramientas o toolchain.
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+https://www.rust-lang.org/en-US/install.html
+
+---
+
+## Rustup
+
+Rustup es la herramienta estándar para manejar el conjunto de herramientas de compilación de Rust.
+
+http://rustup.rs/
+
+---
+
+## Comandos importantes
+
+<pre><code data-source="chapters/shared/code/installation/1.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+# Primeros pasos
+
+Ejecute los siguientes comandos:
+
+<pre><code data-source="chapters/shared/code/installation/2.sh" data-trim="hljs sh"></code></pre>
+Esto carga el código fuente y documentación de la librería estándar para su uso offline.
+
+---
+
+## Contenido del Toolchain
+
+-   rustc
+-   cargo
+-   rustdoc
+-   rust-(lldb|gdb)
+-   libcore/libstd
+
+El debugger instalado depende de la plataforma.
+
+---
+
+## rustc
+
+<pre><code data-source="chapters/shared/code/installation/3.sh" data-trim="hljs sh"></code></pre>
+El compilador Rust construye y liga el código Rust.
+
+`rustc` está casi completamente desarrollado en Rust.
+
+---
+
+## Prueba funcional
+
+<pre><code data-source="chapters/shared/code/installation/4.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+<pre><code data-source="chapters/shared/code/installation/5.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+## Cargo
+
+<pre><code data-source="chapters/shared/code/installation/6.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+Cargo es la herramienta de Rust para construir y manejar paquetes.
+
+Cargo es instalada junto con `rustc`, pero no está ligada a una versión de `rustc`.
+
+---
+
+## Una vez más con Cargo
+
+<pre><code data-source="chapters/shared/code/installation/7.sh" data-trim="hljs sh"></code></pre>
+
+---
+
+## En un pequeño vistazo.
+
+-   ¿Qué hay en Cargo.toml?
+-   ¿Qué hay en Cargo.lock?
+
+---
+
+## Cargo también maneja herramientas.
+
+<pre><code data-source="chapters/shared/code/installation/8.sh" data-trim="hljs sh"></code></pre>
+

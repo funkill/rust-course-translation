@@ -1,0 +1,68 @@
+# Manejo de errores
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+El manejo de errores es explícito en Rust.
+
+Cualquier función con condiciones de error conocidas regresa un `Result<T,E>`.
+
+**No hay excepciones.**
+
+---
+
+<pre><code data-source="chapters/shared/code/error-handling/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## El tipo `Result` debe ser utilizado
+
+<pre><code data-source="chapters/shared/code/error-handling/2.output" data-trim="hljs output"></code></pre>
+
+---
+
+## Usando `Result` con `match`
+
+<pre><code data-source="chapters/shared/code/error-handling/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Usando `Result` condicionalmente.
+
+Buscar por un estado exitoso con `is_ok()`, errores con `is_err()`:
+
+<pre><code data-source="chapters/shared/code/error-handling/4.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Usando `Result` con `?`
+
+Use `?` en funciones con múltiples fallos posibles.
+
+<pre><code data-source="chapters/shared/code/error-handling/5.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Usando `Result` con `?`
+
+Salida:
+
+<pre><code data-source="chapters/shared/code/error-handling/6.output" data-trim="hljs output"></code></pre>
+Note la salida temprana del programa.
+
+---
+
+## `Result` es una envoltura de tipos
+
+Es posible cambiar un `Result<T,E>` a `Result<U,E>` sin desenvolverlo.
+
+Transformar un `Result<T,E>` a `Result<T,X>` es también posible.
+
+<pre class="diagram" data-source="chapters/shared/diagram/error-handling/1.diagram"></pre>
+
+---
+
+## Mapeando valores `Result`
+
+<pre><code data-source="chapters/shared/code/error-handling/7.rs" data-trim="hljs rust"></code></pre>
+`map_err()` tambien está disponible.

@@ -1,0 +1,40 @@
+# Stack und Heap
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Rust allokiert standardmässig auf dem Stack.
+
+---
+
+## Stack-Allokation
+
+<pre><code data-source="chapters/shared/code/stack-and-heap/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Box
+
+Heap-Allokation wird in Rust durch den Typ `Box` dargestellt.
+
+<pre><code data-source="chapters/shared/code/stack-and-heap/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Ownership und Borrowing
+
+`Box` wird besessen, die Daten können allerdings ausgeliehen werden.
+
+<pre><code data-source="chapters/shared/code/stack-and-heap/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Placement in
+
+Momentan ist es *nicht* möglich, Daten direkt an einer gewünschten Stelle zu allokieren. Das nötige Feature nennt sich "Placement in".
+
+[Details zum Stand hier](https://internals.rust-lang.org/t/lang-team-minutes-feature-status-report-placement-in-and-box/4646)
+
+---
+
+In den meisten Fällen optimiert LLVM dies aber schon heraus.

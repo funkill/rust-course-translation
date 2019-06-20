@@ -1,0 +1,76 @@
+# Speicherdarstellung
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+`size_of` und `size_of_val` helfen dabei, die Größe von Typen (in Bytes) herauszubekommen.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Sizedness
+
+Alle Werte in Rust haben entweder eine feste oder flexible Speichergröße. Die Sprache drückt das über den Marker `Sized` aus. `Sized` erhalten Typen, wenn ihre Größe beim Übersetzen bekannt ist.
+
+Typen ohne Größe *müssen* über Borrows addressiert werden.
+
+---
+
+## Größe von Structs
+
+Structs haben die Größe ihrer enthaltenen Daten.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Referenzen
+
+Referenzen sind 1 usize breit. Dies gilt auch für Boxen.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Trait-Objekte
+
+Ausnahme sind Trait-Objekte
+
+<pre><code data-source="chapters/shared/code/memory-considerations/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Slices
+
+Slices sind 2 usize breit. Dies gilt natürlich auch für deren Boxen.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/5.output" data-trim="hljs output" class="lang-rust"></code></pre>
+
+---
+
+## Vektoren
+
+Vektoren sind 3 usize breit, wegen der zusätzlich gespeicherten Kapazität.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/6.output" data-trim="hljs output" class="lang-rust"></code></pre>
+
+---
+
+## `&str`, `Box<str>`, `String`
+
+Verhalten sich wie Slices und Vektoren.
+
+---
+
+## Enums
+
+Enums benötigen die Größe ihres größten Werts, 1 Byte für eine Diskriminate, plus Padding.
+
+<pre><code data-source="chapters/shared/code/memory-considerations/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+Wenn 0 kein legaler Wert ist, nutzt Option diesen als `None`-Fall.
+
+Leider gibt es momentan keine Möglichkeit, das dem Compiler zu kommunizieren.

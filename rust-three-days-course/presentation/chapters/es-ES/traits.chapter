@@ -1,0 +1,83 @@
+# Implementación y traits
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+Rust ofrece la posibilidad de enlazar funciones a tipos.
+
+---
+
+# Alerta
+
+Esto a veces parece programación orientada a objetos, pero no lo es.
+
+En particular el polimorfismo en tiempo de ejecución, mensajes, clases, subtipos y sobrecarga de métodos no están incluidos.
+
+---
+
+## Simple implementación: funciones asociadas.
+
+<pre><code data-source="chapters/shared/code/traits/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Observaciones
+
+El uso de `new` es pura convención.
+
+---
+
+## Python dice Hola
+
+<pre><code data-source="chapters/shared/code/traits/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Borrowing y Ownership de `self`
+
+No es diferente de lo normal, pero al principio un poco desconocido.
+
+-   El préstamo en una función *simultáneamente cede self*.
+-   Esto es especialmente aplicable para préstamos mutables.
+-   `self` sin `&` devuelve la propiedad al valor del contexto que la invoca.
+
+---
+
+## Interesantes diferencias con la POO
+
+-   Los valores se pueden reemplazar a sí mismos.
+-   Valores, por ejemplo, iteradores y constructores pueden tener métodos que consumen `self` y son así invalidados.
+-   Esto resuelve el problema de invertir iteradores.
+
+---
+
+## Atributos
+
+-   La implementación puede ocurrir múltiples veces.
+
+---
+
+## Self
+
+`Self` es un tipo especial en Rust. Siempre hace referencia al tipo del cual la implementación se refiere.
+
+<pre><code data-source="chapters/shared/code/traits/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Traits
+
+Traits son los variantes de Rusts, abstraen por encima de tipos.
+
+---
+
+Ya hemos conocido un trait: `Debug`.
+
+---
+
+Traits definen funciones que los tipos deben implementar. Pueden ser usados genéricamente.
+
+---
+
+<pre><code data-source="chapters/shared/code/traits/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+

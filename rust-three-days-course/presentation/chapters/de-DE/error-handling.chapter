@@ -1,0 +1,72 @@
+# Fehlerbehandlung
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Fehlerbehandlung in Rust ist explizit.
+
+Eine Funktion, die bekannte Fehlerbedingungen hat, gibt einen Wert vom Typ `Result<T,E>` zurück.
+
+**Es gibt keine Ausnahmebehandlung.**
+
+---
+
+<pre><code data-source="chapters/shared/code/error-handling/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Ergebnisse müssen verwendet werden
+
+<pre><code data-source="chapters/shared/code/error-handling/2.output" data-trim="hljs output"></code></pre>
+
+---
+
+## Ergebnisse verwenden mit `match`
+
+<pre><code data-source="chapters/shared/code/error-handling/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Verwenden von Ergebnissen mit Bedingungen
+
+Auf Erfolg prüfen mit `is_ok()`, Fehler mit `is_err()`:
+
+<pre><code data-source="chapters/shared/code/error-handling/4.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Ergebnisse mit `?` verwenden
+
+`?` eignet sich für Funktionen mit mehreren möglichen Fehlerpunkten.
+
+<pre><code data-source="chapters/shared/code/error-handling/5.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Ergebnisse mit `?` verwenden
+
+Ausgabe:
+
+<pre><code data-source="chapters/shared/code/error-handling/6.output" data-trim="hljs output"></code></pre>
+Beachten Sie die vorzeitige Rückkehr.
+
+---
+
+In früheren Rust-Versionen wurde statt `?` der `try!` Macro-Macro verwendet.
+
+---
+
+## Ergebnisse sind Wrappertypen
+
+Es ist möglich, ein `Result<T, E>` in ein `Result<U, E>` zu ändern, ohne es zu entpacken.
+
+Das Transformieren eines `Result<T, E>` in ein `Result<T, X>` ist ebenfalls möglich.
+
+<pre class="diagram" data-source="chapters/shared/diagram/error-handling/1.diagram"></pre>
+
+---
+
+## Ergebniswerte umwandeln
+
+<pre><code data-source="chapters/shared/code/error-handling/7.rs" data-trim="hljs rust"></code></pre>
+`map_err()` ist ebenfalls verfügbar.

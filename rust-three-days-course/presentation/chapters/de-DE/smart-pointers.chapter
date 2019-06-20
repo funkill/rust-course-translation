@@ -1,0 +1,70 @@
+# Spezielle Pointer in Rust
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Rust bietet mehrere spezielle Pointer-Typen an, um verschiedene Szenarien zu handhaben.
+
+Generell ist ihnen gemein: sie werden über Ownership gemanagt.
+
+---
+
+## `std::rc::Rc<T>`
+
+Laufzeit-Reference-Counter innerhalb eines Threads.
+
+<pre><code data-source="chapters/shared/code/smart-pointers/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Semantik
+
+-   `Rc` ist ein Handle auf die enthaltenen Daten.
+-   Das Handle kann geklont werden.
+-   Wenn das letzte Handle droppt, droppen die Daten mit.
+-   `Rc<T>` implementiert `Deref<Target=T>`.
+
+---
+
+## `std::rc::Weak<T>`
+
+Schwacher Pointer auf Daten.
+
+<pre><code data-source="chapters/shared/code/smart-pointers/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Semantik
+
+-   ähnlich `Rc`, die Existenz der Daten ist aber nicht garantiert
+-   Single-Threaded: Die Daten sind garantiert über die Zeit einer Operation verfügbar.
+-   wird *nicht* automatisch dereferenziert
+-   `Rc`-Kreise sind Speicherlecks, Weak-Pointer verhindern das.
+
+---
+
+## Nutzen
+
+-   häufig in Datenstrukturen gebraucht, die komplexe Querreferenzierungen brauchen
+-   höhere Laufzeitkosten für mehr Flexibilität
+
+---
+
+## `std::sync::Arc<T>`
+
+Ist ein teurer `Rc`, der über Threadgrenzen hinweg funktioniert, da ein atomarer Zähler zum Inkrementieren verwendet wird.
+
+---
+
+## Anmerkung
+
+Nutzen Sie `Arc` nicht "auf Verdacht" - `rustc` lehnt Code ab, der `Rc` über Threadgrenzen verwendet.
+
+---
+
+## `std::borrow::Cow`
+
+-   Copy-on-write
+-   abstrahiert über Leihe und Besitz
+-   klont enthaltene Daten nur bei Notwendigkeit
+-   https://doc.rust-lang.org/std/borrow/enum.Cow.html#examples

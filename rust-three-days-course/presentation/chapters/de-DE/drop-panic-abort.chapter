@@ -1,0 +1,97 @@
+# Drop, panic und abort
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Was passiert eigentlich genau, wenn wir Typen droppen?
+
+---
+
+## Drop-Reihenfolge
+
+Die Drop-Reihenfolge in Rust ist momentan *nicht* standardisiert. Es gibt jedoch gute Gründe, sie so zu standardisieren, wie sie gerade ist.
+
+[Diskussion](https://github.com/rust-lang/rfcs/issues/1857)
+
+---
+
+## Drop-Reihenfolge
+
+-   Werte werden fallen gelassen, wenn ihr Scope zuende ist.
+-   Die Reihenfolge ist *genau umgekehrt wie ihre Einführung*.
+-   Nicht gebundene Werte droppen *sofort*.
+
+---
+
+## Destruktoren
+
+Manchmal müssen vor der Deallokation bestimmte Aktionen ausgeführt werden.
+
+Hierzu kann der Trait `Drop` implementiert werden.
+
+---
+
+<pre><code data-source="chapters/shared/code/drop-panic-abort/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Vorsicht!
+
+Destruktoren können keine Fehler zurückgeben.
+
+---
+
+## Auch möglich
+
+Explizite Löschung des Werts durch eine konsumierende Funktion. Dies kann (momentan) nicht erzwungen werden.
+
+---
+
+## Panics
+
+Rust besitzt einen weiteren Fehlermechanismus: `panic!`
+
+<pre><code data-source="chapters/shared/code/drop-panic-abort/2.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+Im Falle einer Panic passiert Folgendes:
+* Der Thread hält sofort an.
+* Der Stack wird aufgerollt.
+* Alle von der Panic betroffenen Werte werden fallengelassen.
+
+---
+
+Panics gleichen mechanisch C++-Exceptions, sollten aber nur zur Signalisierung unbehebbarer Fehler verwendet werden. Sie (normalerweise) können nicht gefangen werden.
+
+Der betroffene Thread stellt die Arbeit ein.
+
+---
+
+## Das Fangen von Panics
+
+Panics über FFI-Grenzen hinweg sind undefiniertes Verhalten. Daher gibt es Fälle, in denen sie aus Rust heraus gefangen werden sollten: hierzu gibt es [std::panic::catch-unwind](https://doc.rust-lang.org/std/panic/fn.catch_unwind.html) und [std::panic::resume-unwind](https://doc.rust-lang.org/std/panic/fn.resume_unwind.html).
+
+---
+
+## Hooks
+
+[std::panic::set\_hook](https://doc.rust-lang.org/std/panic/fn.set_hook.html) erlaubt einen Handler zu setzen, der *vor* der Behandlung der Panic ausgeführt wird.
+
+---
+
+Generell sollte *immer* `Result` verwendet werden.
+
+---
+
+## Abort
+
+In manchen Umgebungen macht panic! keinen Sinn. In diesem Fall besitzen `rustc` und `cargo` einen Schalter, mit dem `panic!` einen sofortigen Programmabbruch hervorruft.
+
+Der Panic-Hook wird ausgeführt.
+
+---
+
+## Doppelte Panics
+
+Sollte beim behandeln einer panic innerhalb eines Threads eine weitere auftreten (z.B. beim Ausführen eines Destruktors), bricht das Programm sofort ab.

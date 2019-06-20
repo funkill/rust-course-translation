@@ -1,0 +1,47 @@
+# Kleine Hilfestellungen zum Start
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Strings in Rust sind ein Thema für sich.
+
+Daher werden sie später in einem eigenen Abschnitt behandelt.
+
+---
+
+## Strings ohne Nachdenken
+
+<pre><code data-source="chapters/shared/code/little-helpers/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Code Style
+
+-   4 Spaces
+-   keine Tabs
+-   Blockklammern in eine eigene Zeile
+
+---
+
+## println!()
+
+<pre><code data-source="chapters/shared/code/little-helpers/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Use the heap, Luke!
+
+Wir verwenden für die ersten Schritte:
+
+-   String
+-   `Vec<T>` (Vektoren)
+-   Plain `struct`s
+
+<pre><code data-source="chapters/shared/code/little-helpers/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## \#\[derive(Debug)\]
+
+<pre><code data-source="chapters/shared/code/little-helpers/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Das Attribut funktioniert für alle Datenstrukturen.

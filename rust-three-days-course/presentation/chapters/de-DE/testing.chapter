@@ -1,0 +1,106 @@
+# Testen
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Testen ist fundamental für Rust.
+
+Unit-, Integrations und Dokumentations-Tests werden direkt mitgeliefert.
+
+---
+
+## Organisation
+
+Tests in der Regel am Ende in 1 von 4 möglichen Standorten:
+
+-   direkt neben der getesteten Funktionalität (Unittest)
+-   in einem `Tests`-Modul (Privater Integrationstest)
+-   in der Dokumentation (Dokumentationsprüfung)
+-   im Verzeichnis `tests/` (Öffentlicher Integrationstest)
+
+---
+
+## Unittest
+
+-   erlaubt Testfunktionalität im gleichen Modul und Umgebung
+-   typisch direkt in der Nähe der Funktionalität
+-   gut um sicherzustellen, ob eine einzelne Aktion *funktioniert*.
+
+---
+
+## Unittest
+
+<pre><code data-source="chapters/shared/code/testing/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Unittest
+
+<pre><code data-source="chapters/shared/code/testing/2.bash" data-trim="hljs bash"></code></pre>
+
+---
+
+## `tests` Untermodul
+
+-   ermöglicht das Testen, als ob die Funktionalität an anderer Stelle im Projekt verwendet wird
+-   für die Prüfung privater APIs und Funktionalität
+-   gut für die Prüfung erwarteter Prozesse und Anwendungsfälle
+
+---
+
+## `tests` Untermodul
+
+<pre><code data-source="chapters/shared/code/testing/3.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## `tests` Untermodul
+
+<pre><code data-source="chapters/shared/code/testing/4.bash" data-trim="hljs bash"></code></pre>
+
+---
+
+## Dokumentationstests
+
+-   erlauben das Testen der öffentlichen Funktionalität
+-   wird im `rustdoc`-Ausgang angezeigt
+-   zur Demonstration erwarteter Anwendungsfälle und Beispiele
+
+---
+
+## Dokumentationstests
+
+<pre><code>
+/// ```rust
+/// use example::Direction;
+/// let way_home = Direction::North;
+/// ```
+pub enum Direction { North, South, East, West }
+</code></pre>
+
+---
+
+## Dokumentationstests
+
+<pre><code data-source="chapters/shared/code/testing/5.bash" data-trim="hljs bash"></code></pre>
+
+---
+
+## Integrationstests
+
+-   Tests, als ob die Bibliothek eine externe Abhängigkeit ist
+-   Für längere oder volle Funktionstests vorgesehen
+
+---
+
+## Integrationstests
+
+`/tests/basic.rs`:
+
+<pre><code data-source="chapters/shared/code/testing/6.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Integrationstests
+
+<pre><code data-source="chapters/shared/code/testing/7.bash" data-trim="hljs bash"></code></pre>

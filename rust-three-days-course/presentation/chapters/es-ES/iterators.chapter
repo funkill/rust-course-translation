@@ -1,0 +1,87 @@
+# Iteradores
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+Los iteradores de Rust son:
+
+-   Perezosos (lazy).
+-   Penetrante (pervasive).
+-   Potencialmente infinitos.
+
+---
+
+## ¿De dónde vienen?
+
+-   Colecciones como `Vec<T>` tienen una función `iter()` que produce un iterador.
+-   Cosas como `std::net::TcpListener` produce un iterador de `TcpStream`s a través de su función `incoming()`.
+-   Los iteradores pueden ser implementados en otras estructuras.
+
+---
+
+## Usos comunes
+
+---
+
+## `next()`
+
+Los iteradores puede ser manualmente incrementados:
+
+<pre><code data-source="chapters/shared/code/iterators/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `map()`
+
+Transforman elementos mientras son evaluados:
+
+<pre><code data-source="chapters/shared/code/iterators/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `filter()`
+
+Filtra valores no deseados, saltando cálculos adicionales en ellos:
+
+<pre><code data-source="chapters/shared/code/iterators/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `fold()`
+
+Reduce una secuencia de valores a un valor único:
+
+<pre><code data-source="chapters/shared/code/iterators/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `cycle()` & `take()`
+
+Causan que los iteradores se repitan y finalicen tempranamente:
+
+<pre><code data-source="chapters/shared/code/iterators/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `zip()` & `unzip()`
+
+Unen iteradores y los separan en partes también:
+
+<pre><code data-source="chapters/shared/code/iterators/6.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `max()` & `min()`
+
+Devuelve el valor mínimo o máximo de un iterador.
+
+<pre><code data-source="chapters/shared/code/iterators/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Gotcha
+
+Esto no funciona
+
+<pre><code data-source="chapters/shared/code/iterators/8.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+¿Por qué? Piense acerca del alcance y propiedad (scoping & ownership!)

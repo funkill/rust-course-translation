@@ -1,0 +1,69 @@
+# Dynamischer Dispatch
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Manchmal möchte man sich zur Laufzeit für eine Code-Implementierung entscheiden, statt den Compiler monomorphisieren zu lassen.
+
+Hierzu gibt es 2 Möglichkeiten.
+
+---
+
+## Dispatch durch Enums
+
+Wenn die Anzahl der Möglichkeiten beschränkt ist, kann gerne zu einem Enum gegriffen werden:
+
+<pre><code data-source="chapters/shared/code/dynamic-dispatch/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Alternative Form
+
+
+<pre><code data-source="chapters/shared/code/dynamic-dispatch/2.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Hinweis
+
+Verhindern Sie wiederholtes matchen auf denselben Enum, wenn nicht unbedingt notwendig.
+
+---
+
+## Trait-Objekte
+
+Referenzen oder rohe Pointer auf Traits, genauso wie Boxen, beschreiben sogenannte "Trait-Objekte".
+
+Trait-Objekte sind ein Paar von Pointern auf eine virtuelle Funktionstabelle und die konkreten Daten.
+
+---
+
+## Einschränkungen
+
+-   Es kann nur ein Trait pro Objekt verwendet werden.
+-   Dieser Trait muss bestimmten Regeln gehorchen.
+
+---
+
+## Regeln für Objekt-Traits
+
+-   Objektsichere Traits dürfen *nicht* `Self: Sized` verlangen.
+-   Alle Methoden sind objektsicher:
+    -   Sie haben keine Typ-Parameter.
+    -   Sie verwenden nicht `Self`.
+
+---
+
+## Weitere Eigenschaften
+
+-   Da Trait-Objekte den Objekt-Typ zur Laufzeit halten, unterstützen sie Downcasts.
+
+<pre><code data-source="chapters/shared/code/dynamic-dispatch/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Trait Objects und Closures
+
+Da Closures Traits implementieren, sind sie legale Trait-Objekte.
+
+<pre><code data-source="chapters/shared/code/dynamic-dispatch/4.rs" data-trim="hljs rust"></code></pre>

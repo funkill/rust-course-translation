@@ -1,0 +1,34 @@
+# Mutabilität
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Moderne Programmiersprachen unterscheiden sich meist in ihrer Haltung zur Mutabilität von Daten.
+
+Wo landet Rust?
+
+---
+
+## Ein Beispiel
+
+<pre><code data-source="chapters/shared/code/mutability/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Richtig
+
+<pre><code data-source="chapters/shared/code/mutability/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+Rust verlangt, mutable Daten zu deklarieren.
+
+Mutabilität ist immer direkt aus dem Code ersichtlich.
+
+---
+
+Mutabilität ist fundamental wichtig für Rust und wird uns regelmässig wieder begegnen.
+
+---
+
+Mutabilität ist eine Eigenschaft von Variablen und Bindungen, nicht der daran gebunden Daten.

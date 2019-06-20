@@ -1,0 +1,114 @@
+# Ownership
+[Inhaltsverzeichnis](toc/default.html)
+
+---
+
+Ownership ist die Basis für das Speichermanagement von Rust.
+
+---
+
+## Regeln
+
+-   Jedes Stück Daten wird genau einmal besessen
+-   Besitz kann abgegeben werden
+-   Der Besitzer ist für das Entfernen der Daten aus dem Speicher verantwortlich.
+-   Der Besitzer hat volle Gewalt über die Daten und kann sie mutieren
+
+---
+
+Diese Regeln:
+
+*sind fundamental für Rusts Typsystem!
+* werden beim Übersetzen angewandt.
+* sind aber auch sonst praktisch.
+
+---
+
+## Beispiel
+
+<pre><code data-source="chapters/shared/code/ownership/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+<pre class="diagram" data-source="chapters/shared/diagram/ownership/1.diagram"></pre>
+
+---
+
+Was passiert, wenn versuchen, `dot` nochmal zu verwenden?
+
+---
+
+<pre><code data-source="chapters/shared/code/ownership/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Oops!
+
+---
+
+Dieser Vorgang nennt sich im Rust-Lingo `konsumieren`. `pacman` konsumiert `dot`.
+
+Danach kann der Wert nicht mehr verwendet werden.
+
+---
+
+## Hintergrund
+
+Wen wir `pacman` mit `dot` aufrufen, werden die Daten in die Argumente von `pacman` bewegt (move). Dabei geht der Besitz an `pacman` über. `main` besitzt die Daten danach nicht mehr und darf sie auch nicht mehr manipulieren.
+
+---
+
+## Mit moves umgehen: explizit klonen
+
+Was tun, wenn dieses Verhalten nicht erwünscht ist? Wir können eine zweite Version der Daten anlegen!
+
+---
+
+<pre><code data-source="chapters/shared/code/ownership/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+<pre class="diagram" data-source="chapters/shared/diagram/ownership/2.diagram"></pre>
+
+---
+
+Klonen ist für Daten vorgesehen, bei denen der Vorgang der Duplizierung komplex ist.
+
+---
+
+## Mit moves umgehen: kopieren statt moves
+
+<pre><code data-source="chapters/shared/code/ownership/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+Kopien sind für Daten vorgesehen, die im Speicher schnell kopierbar sind (memcopy) und auch kopiert werden dürfen (Gegenbeispiel: File-Pointer).
+
+---
+
+Daten, die den `copy`-Trait besitzen, folgen den Ownership-Regeln. Sie werden allerdings kopiert, wenn Ownership abgeben wird.
+
+---
+
+# Warnung
+
+Die Terminologie um moves ähnelt der von C++, deswegen sollte man die Rust-Terminologie verwenden: Besitz, Besitzabgabe und konsumieren.
+
+---
+
+## Praktisches Beispiel
+
+<pre><code data-source="chapters/shared/code/ownership/5.rs" data-trim="hljs rust"></code></pre>
+Was würde passieren, wenn wir File nach dem Aufruf von `use_file` noch verwenden?
+
+---
+
+## Knobelfrage
+
+`drop` ist die Funktion, die einen Wert sofort verwirft. Wie sieht ihre Implementierung aus?
+
+<pre><code data-source="chapters/shared/code/ownership/6.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+<pre><code data-source="chapters/shared/code/ownership/7.rs" data-trim="hljs rust"></code></pre>

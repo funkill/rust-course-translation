@@ -1,0 +1,48 @@
+# Genéricos simples
+[Tabla de Contenido](toc/spanish.html)
+
+---
+
+Los genéricos son fundamentales para Rust.
+
+---
+
+## Estructuras genéricas
+
+<pre><code data-source="chapters/shared/code/generics-basics/1.rs" data-trim="hljs rust"></code></pre>
+
+---
+
+## Inferencia de tipos
+
+Rust encuentra los tipos de todas las variables y genéricos con suficiente información.
+
+Esto sólo aplica *dentro* de los límites de una función.
+
+Las firmas deben ser ingresadas completamente.
+
+---
+
+## Enums genéricos
+
+<pre><code data-source="chapters/shared/code/generics-basics/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Enums genéricos importantes.
+
+---
+
+## Option
+
+<pre><code data-source="chapters/shared/code/generics-basics/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Describe un valor que no necesariamente debe estar presente.
+
+`None` es un valor y no debe ser confundido con `null`.
+
+---
+
+## Result
+
+<pre><code data-source="chapters/shared/code/generics-basics/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+Describe cuando una operación fue exitosa y devuelve ya sea el valor o un error.
